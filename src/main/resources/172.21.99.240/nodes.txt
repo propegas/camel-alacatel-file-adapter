@@ -1,0 +1,55 @@
+ATECP,3600,Supply Network,TGK1-Kola,ATECP,10.620,1119-H0-21,1,ATECP/A2-1, , ,Online,N/A,N/A,N/A,N/A,20
+ATECS,3600,Supply Network,TGK1-Kola,ATECS,10.621,1119-H0-21,1,ATECS/A2-2, , ,Online,N/A,N/A,N/A,N/A,7
+AU-KSGES,3600,Supply Network,TGK1-Kola,AU-KSG,10.300,1119-H0-15,1,AU-KSG/A1-1, , ,Online,N/A,N/A,N/A,N/A,52
+CAS RAD,LAN node (None),Supply Network,TGK1-Kola,CAS RAD,0.0,1113-00-00,1,n/a, , ,Unknown,N/A,N/A,N/A,N/A,55
+G10P,3600,Supply Network,TGK1-Kola,G10P,10.200,1119-H0-21,1,G10P/A4-1, , ,Online,N/A,N/A,N/A,N/A,27
+G10S,3600,Supply Network,TGK1-Kola,G10S,10.201,1119-H0-21,1,G10S/A2-2, , ,Online,N/A,N/A,N/A,N/A,28
+G11P,3600,Supply Network,TGK1-Kola,G11P,10.210,1119-H0-15,1,G11P/A4-1, , ,Online,N/A,N/A,N/A,N/A,46
+G11S,3600,Supply Network,TGK1-Kola,G11S,10.211,1119-H0-21,1,G11S/A2-2, , ,Online,N/A,N/A,N/A,N/A,47
+G12P,3600,Supply Network,TGK1-Kola,G12P,10.220,1119-H0-15,1,G12P/A4-2, , ,Online,N/A,N/A,N/A,N/A,3
+G12S,3600,Supply Network,TGK1-Kola,G12S,10.221,1119-H0-15,1,G12S/A4-2, , ,Online,N/A,N/A,N/A,N/A,4
+G13P,3600,Supply Network,TGK1-Kola,G13P,10.230,1119-H0-15,1,G13P/A4-1, , ,Online,N/A,N/A,N/A,N/A,5
+G13S,3600,Supply Network,TGK1-Kola,G13S,10.231,1119-H0-15,1,G13S/A8-1, , ,Online,N/A,N/A,N/A,N/A,10
+G15P,3600,Supply Network,TGK1-Kola,G15P,10.250,1119-H0-21,1,G15P/A4-1, , ,Online,N/A,N/A,N/A,N/A,33
+G15S,3600,Supply Network,TGK1-Kola,G15S,10.251,1119-H0-21,1,G15S/A2-1, , ,Online,N/A,N/A,N/A,N/A,34
+G16P,3600,Supply Network,TGK1-Kola,G16P,10.260,1119-H0-21,1,G16P/A4-1, , ,Online,N/A,N/A,N/A,N/A,35
+G16S,3600,Supply Network,TGK1-Kola,G16S,10.261,1119-H0-21,1,G16S/A2-1, , ,Online,N/A,N/A,N/A,N/A,36
+G18P,3600,Supply Network,TGK1-Kola,G18P,10.280,1119-H0-21,1,G18P/A4-1, , ,Online,N/A,N/A,N/A,N/A,31
+G18S,3600,Supply Network,TGK1-Kola,G18S,10.281,1119-H0-21,1,G18S/A2-1, , ,Online,N/A,N/A,N/A,N/A,32
+G19P,3600,Supply Network,TGK1-Kola,G19P,10.290,1119-H0-21,1,G19P/A4-1, , ,Online,N/A,N/A,N/A,N/A,37
+G19S,3600,Supply Network,TGK1-Kola,G19S,10.291,1119-H0-21,1,G19S/A2-1, , ,Online,N/A,N/A,N/A,N/A,38
+G1P,3600,Supply Network,TGK1-Kola,G1P,10.310,1119-H0-21,1,G1P/A4-1, , ,Online,N/A,N/A,N/A,N/A,45
+G1S,3600,Supply Network,TGK1-Kola,G1S,10.311,1119-H0-21,1,G1S/A2-2, , ,Online,N/A,N/A,N/A,N/A,48
+G2P,3600,Supply Network,TGK1-Kola,G2P,10.320,1119-H0-21,1,G2P/A4-1, , ,Online,N/A,N/A,N/A,N/A,44
+G2S,3600,Supply Network,TGK1-Kola,G2S,10.321,1119-H0-21,1,G2S/A2-1, , ,Online,N/A,N/A,N/A,N/A,49
+G3P,3600,Supply Network,TGK1-Kola,G3P,10.130,1119-H0-21,1,G3P/A2-2, , ,Online,N/A,N/A,N/A,N/A,39
+G3S,3600,Supply Network,TGK1-Kola,G3S,10.131,1119-H0-21,1,G3S/A2-2, , ,Online,N/A,N/A,N/A,N/A,40
+G4P,3600,Supply Network,TGK1-Kola,G4P,10.140,1119-H0-21,1,G4P/A2-1, , ,Online,N/A,N/A,N/A,N/A,25
+G4S,3600,Supply Network,TGK1-Kola,G4S,10.141,1119-H0-21,1,G4S/A1-2, , ,Online,N/A,N/A,N/A,N/A,26
+G5P,3600,Supply Network,TGK1-Kola,G5P,10.150,1119-H0-21,1,G5P/A2-1, , ,Online,N/A,N/A,N/A,N/A,21
+G5S,3600,Supply Network,TGK1-Kola,G5S,10.151,1119-H0-21,1,G5S/A2-2, , ,Online,N/A,N/A,N/A,N/A,22
+G6P,3600,Supply Network,TGK1-Kola,G6P,10.160,1119-H0-21,1,G6P/A4-1, , ,Online,N/A,N/A,N/A,N/A,18
+G6S,3600,Supply Network,TGK1-Kola,G6S,10.161,1119-H0-21,1,G6S/A2-1, , ,Online,N/A,N/A,N/A,N/A,19
+G7P,3600,Supply Network,TGK1-Kola,G7P,10.170,1119-H0-21,1,G7P/A4-1, , ,Online,N/A,N/A,N/A,N/A,23
+G7S,3600,Supply Network,TGK1-Kola,G7S,10.171,1119-H0-21,1,G7S/A2-2, , ,Online,N/A,N/A,N/A,N/A,24
+G8P,3600,Supply Network,TGK1-Kola,G8P,10.180,1119-H0-21,1,Holdover, , ,Online,N/A,N/A,N/A,N/A,30
+G8S,3600,Supply Network,TGK1-Kola,G8S,10.181,1119-H0-15,1,G8S/A2-2, , ,Online,N/A,N/A,N/A,N/A,29
+G9P,3600,Supply Network,TGK1-Kola,G9P,10.190,1119-H0-15,1,G9P/A4-1, , ,Online,N/A,N/A,N/A,N/A,50
+G9S,3600,Supply Network,TGK1-Kola,G9S,10.191,1119-H0-15,1,G9S/A2-1, , ,Online,N/A,N/A,N/A,N/A,51
+KolRDU 3600-510,3600,Supply Network,RDU,KolRDU,10.510,1119-H0-00,2,n/a, , ,Unable to communicate with node,N/A,N/A,N/A,N/A,43
+LAN,AP,Supply Network,CONTROL,LAN,0.0,1113-00-00,1,n/a, , ,Unknown,N/A,N/A,N/A,N/A,42
+MMX12 OSN,CUSTOM,Supply Network,TGK1-Kola,MMX12,0.0,1113-00-00,1,n/a, , ,Unknown,N/A,N/A,N/A,N/A,54
+MMX12 RES,CUSTOM,Supply Network,TGK1-Kola,MMX12 P,0.0,1113-00-00,1,n/a, , ,Unknown,N/A,N/A,N/A,N/A,53
+Moxa-A1,LAN node (IP),Supply Network,CONTROL,Moxa-A1,0.0,1113-00-00,1,n/a, ,172.21.99.237,Node responded to last IP poll,N/A,N/A,N/A,N/A,6
+Moxa-A2,LAN node (IP),Supply Network,CONTROL,Moxa-A2,0.0,1113-00-00,1,n/a, ,172.21.99.236,Node responded to last IP poll,N/A,N/A,N/A,N/A,41
+Moxa-B1,LAN node (IP),Supply Network,CONTROL,Moxa-B1,0.0,1113-00-00,1,n/a, ,172.21.99.238,Node responded to last IP poll,N/A,N/A,N/A,N/A,8
+Moxa-B2,LAN node (IP),Supply Network,CONTROL,Moxa-B2,0.0,1113-00-00,1,n/a, ,172.21.99.239,Node responded to last IP poll,N/A,N/A,N/A,N/A,9
+OSN-MS3600-A,3600,Supply Network,RDU,O-A,10.110,1119-H0-00,1,O-A/A6-1, , ,Online,N/A,N/A,N/A,N/A,14
+OSN-TM3630,3630,Supply Network,RDU,O-3630,10.111,9125-H3-40,1,O-3630/P1-1, , ,Online,N/A,N/A,N/A,N/A,17
+RES-MS3600-A,3600,Supply Network,RDU,R-A,10.100,1119-H0-15,1,R-A/A7-1, , ,Online,N/A,N/A,N/A,N/A,13
+RES-TM3630,3630,Supply Network,RDU,R-3630,10.101,9125-H3-40,1,R-3630/P1-1, , ,Online,N/A,N/A,N/A,N/A,16
+RES-VOICE-A,3600,Supply Network,RDU,R-V-A,10.102,1119-H0-15,1,R-V-A/A8-2, , ,Online,N/A,N/A,N/A,N/A,15
+Sov2P,3600+,Supply Network,TGK1-Kola,Sov2P,10.120,S1119-H0-15,2,Sov2P/A1-4, ,172.21.99.241,Online,N/A,N/A,N/A,N/A,11
+Sov2S,3600,Supply Network,TGK1-Kola,Sov2S,10.121,1119-H0-15,1,Sov2S/A1-2, , ,Online,N/A,N/A,N/A,N/A,2
+Sov7,3600,Supply Network,TGK1-Kola,Sov7,10.123,1119-H0-21,2,Sov7/A4-2, , ,Online,N/A,N/A,N/A,N/A,12
+active,5620 NM,Supply Network,CONTROL,active,0.1023,SGA118-H3-00,1,n/a, ,172.21.99.240,Online,N/A,N/A,N/A,N/A,1
