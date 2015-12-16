@@ -4,11 +4,11 @@ import java.io.File;
 import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.camel.ComponentConfiguration;
+//import org.apache.camel.ComponentConfiguration;
 import org.apache.camel.Exchange;
-import org.apache.camel.Header;
-import org.apache.camel.LoggingLevel;
-import org.apache.camel.Message;
+//import org.apache.camel.Header;
+//import org.apache.camel.LoggingLevel;
+//import org.apache.camel.Message;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 //import org.apache.camel.component.cache.CacheComponent;
@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 //import org.apache.camel.processor.cache.CacheBasedMessageBodyReplacer;
 //import org.apache.camel.processor.cache.CacheBasedTokenReplacer;
 import org.apache.camel.processor.idempotent.FileIdempotentRepository;
-import org.apache.log4j.Level;
+//import org.apache.log4j.Level;
 
 import ru.at_consulting.itsm.event.Event;
 //import ru.atc.camel.opsm.events.OPSMConsumer;

@@ -9,7 +9,7 @@ package ru.atc.camel.alcatel.events;
 //import java.io.InputStreamReader;
 //import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -49,18 +49,18 @@ import ru.at_consulting.itsm.event.Event;
 
 //import javax.sql.DataSource;
 //import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
+//import org.apache.commons.lang.ArrayUtils;
+//import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+//import java.io.PrintWriter;
+//import java.sql.Timestamp;
+//import java.text.SimpleDateFormat;
 
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.xfer.FileSystemFile;
@@ -70,7 +70,7 @@ import net.schmizz.sshj.xfer.FileSystemFile;
 
 public class AlcatelConsumer extends ScheduledPollConsumer {
 
-	private String[] openids = {};
+	//private String[] openids = {};
 
 	private static Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -234,7 +234,7 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 		String locallogpath = endpoint.getConfiguration().getLocallogpath();
 
 		List<HashMap<String, Object>> listOpenEvents = new ArrayList<HashMap<String, Object>>();
-		List<HashMap<String, Object>> listClosedEvents = new ArrayList<HashMap<String, Object>>();
+		//List<HashMap<String, Object>> listClosedEvents = new ArrayList<HashMap<String, Object>>();
 		// List<HashMap<String, Object>> listVmStatuses = null;
 		int events = 0;
 		
@@ -264,7 +264,7 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 			// List<HashMap<String, Object>> allevents = (List<HashMap<String,
 			// Object>>) ArrayUtils.addAll(listOpenEvents);
 
-			String alarmtext, location;
+			//String alarmtext, location;
 
 			Event genevent = new Event();
 
@@ -358,7 +358,7 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 		SSHClient ssh = new SSHClient();
 		// ssh.useCompression(); // Can lead to significant speedup (needs JZlib
 		// in classpath)
-		File file = new File("c:\\users\\vgoryachev\\Documents\\MobaXterm\\home\\.ssh\\known_hosts");
+		//File file = new File("c:\\users\\vgoryachev\\Documents\\MobaXterm\\home\\.ssh\\known_hosts");
 		ssh.loadKnownHosts();
 		ssh.connect(host);
 		
@@ -567,8 +567,8 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 	private Event genEventObj(HashMap<String, Object> alarm, String host, String source) throws Exception, Throwable {
 		// TODO Auto-generated method stub
 		Event event;
-		boolean oldeventclosed = false;
-		List<HashMap<String, Object>> evlist = new ArrayList<HashMap<String, Object>>();
+		//boolean oldeventclosed = false;
+		//List<HashMap<String, Object>> evlist = new ArrayList<HashMap<String, Object>>();
 
 		event = new Event();
 
