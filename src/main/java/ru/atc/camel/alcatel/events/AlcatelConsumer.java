@@ -71,6 +71,7 @@ import net.schmizz.sshj.xfer.FileSystemFile;
 public class AlcatelConsumer extends ScheduledPollConsumer {
 
 	//private String[] openids = {};
+	public String nodetypeprefix = "0.0.13.3100.0.7.28#";
 
 	private static Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -423,7 +424,14 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 					// br.getClass()
 					// if (!line.trim().equals(lineToRemove)) {
 					logger.debug(String.format("*****1 %s", line.trim()));
-
+					
+					/*
+					 * 22391		0	5	6	1.2.124.360501.3.77	/0.0.13.3100.0.7.30#1/0.0.13.3100.0.7.47#2142/	1450168333	Path 2142	Path connected after being recovered.  Path-Ends: <AU_res/B2-7-7> <AUKVGE/A2-2-7>
+					 * 22392	AU_3600+res	0	5	562010	1.2.124.113537.1.1.3	/0.0.13.3100.0.7.30#1/0.0.13.3100.0.7.28#4/0.0.13.3100.0.7.20#2/0.0.13.3100.0.7.20#B1/0.0.13.3100.0.7.13#5 /	1450168333	Port AU_3600+res/P2-B1-5 	Distant Alarm Cleared|B1-5 |
+					 * 80227	G1P	3	0	7	0.0.13.3100.0.3.3	/0.0.13.3100.0.7.30#1/0.0.13.3100.0.7.28#45/	1449394856	Node G1P	Synch Source Changed|N/A  |1,4,3                           
+					 * 80228	G3P	3	0	7	0.0.13.3100.0.3.3	/0.0.13.3100.0.7.30#1/0.0.13.3100.0.7.28#39/	1449394857	Node G3P	Synch Source Changed|N/A  |1,2,4                                  
+					 */
+					
 					p = Pattern.compile("(\\d+.*)");
 					matcher = p.matcher(line.trim());
 					if (!matcher.matches()) {
@@ -462,7 +470,8 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 						logger.debug(String.format("Skipping old ID: %s", id));
 						continue;
 					}
-
+					
+					// 22392
 					p = Pattern.compile("\\d+");
 					matcher = p.matcher(splited[1]);
 					// String output = "";
@@ -496,10 +505,19 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 					row.put("host", host);
 					row.put("severity", splited[2 + ext]);
 					row.put("eventtype", splited[3 + ext]);
-
+					
+					// /0.0.13.3100.0.7.30#1/0.0.13.3100.0.7.28#4/0.0.13.3100.0.7.20#2/0.0.13.3100.0.7.20#B1/0.0.13.3100.0.7.13#5 /
 					p = Pattern.compile("/");
 					String[] objects = p.split(splited[5 + ext]);
-					row.put("ciid", objects[2]);
+					if (objects[2].startsWith(nodetypeprefix)) {
+						row.put("ciid", objects[2]);
+					}
+					else {
+						// mapping to 5620 NM by default
+						// active,5620 NM,Supply Network,CONTROL,active,0.1023,SGA118-H3-00,1,n/a, ,172.21.99.240,Online,N/A,N/A,N/A,N/A,1
+						row.put("ciid", nodetypeprefix + "1");
+					}
+					
 
 					row.put("timestamp", splited[6 + ext]);
 
