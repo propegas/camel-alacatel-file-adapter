@@ -449,7 +449,7 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 
 					for (int i = 0; i < columns; i++) {
 
-						logger.info(String.format("%d: %s", i, splited[i]));
+						logger.debug(String.format("%d: %s", i, splited[i]));
 
 						// System.out.println(matcher.group(2));
 
