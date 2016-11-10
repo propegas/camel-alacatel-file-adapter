@@ -8,29 +8,37 @@ package ru.atc.camel.alcatel.events;
 //import java.io.IOException;
 //import java.io.InputStreamReader;
 //import java.io.PrintWriter;
-import java.util.ArrayList;
-//import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
-import java.util.regex.Pattern;
 
-//import org.apache.camel.Endpoint;
+import net.schmizz.sshj.SSHClient;
+import net.schmizz.sshj.xfer.FileSystemFile;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-//import org.apache.camel.Producer;
-//import org.apache.camel.ProducerTemplate;
-//import org.apache.camel.component.cache.CacheConstants;
 import org.apache.camel.impl.ScheduledPollConsumer;
 import org.apache.camel.model.ModelCamelContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.at_consulting.itsm.event.Event;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//import java.util.Date;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
+//import org.apache.camel.Endpoint;
+//import org.apache.camel.Producer;
+//import org.apache.camel.ProducerTemplate;
+//import org.apache.camel.component.cache.CacheConstants;
 //import com.thoughtworks.xstream.io.json.JsonWriter.Format;
-
 //import com.apc.stdws.xsd.isxcentral._2009._10.ISXCDevice;
 //import com.apc.stdws.xsd.isxcentral._2009._10.ISXCAlarmSeverity;
 //import com.apc.stdws.xsd.isxcentral._2009._10.ISXCAlarm;
@@ -41,55 +49,28 @@ import org.slf4j.LoggerFactory;
 //import com.google.gson.JsonElement;
 //import com.google.gson.JsonObject;
 //import com.google.gson.JsonParser;
-
 //import ru.at_consulting.itsm.device.Device;
-import ru.at_consulting.itsm.event.Event;
 //import ru.atc.camel.alcatel.events.api.OVMMDevices;
 //import ru.atc.camel.alcatel.events.api.OVMMEvents;
-
 //import javax.sql.DataSource;
 //import org.apache.commons.dbcp.BasicDataSource;
 //import org.apache.commons.lang.ArrayUtils;
 //import org.apache.commons.lang.exception.ExceptionUtils;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 //import java.io.FileWriter;
-import java.io.IOException;
 //import java.io.PrintWriter;
 //import java.sql.Timestamp;
 //import java.text.SimpleDateFormat;
-
-import net.schmizz.sshj.SSHClient;
-import net.schmizz.sshj.xfer.FileSystemFile;
 
 //import com.mysql.jdbc.Connection;
 //import com.mysql.jdbc.Driver;
 
 public class AlcatelConsumer extends ScheduledPollConsumer {
 
+	public static AlcatelEndpoint endpoint;
+	public static ModelCamelContext context;
+	private static Logger logger = LoggerFactory.getLogger(Main.class);
 	//private String[] openids = {};
 	public String nodetypeprefix = "0.0.13.3100.0.7.28#";
-
-	private static Logger logger = LoggerFactory.getLogger(Main.class);
-
-	public static AlcatelEndpoint endpoint;
-
-	public static ModelCamelContext context;
-
-	public enum PersistentEventSeverity {
-		OK, INFO, WARNING, MINOR, MAJOR, CRITICAL;
-
-		public String value() {
-			return name();
-		}
-
-		public static PersistentEventSeverity fromValue(String v) {
-			return valueOf(v);
-		}
-	}
 
 	public AlcatelConsumer(AlcatelEndpoint endpoint, Processor processor) {
 		super(endpoint, processor);
@@ -108,6 +89,73 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 	public static void setContext(ModelCamelContext context1) {
 		context = context1;
 
+	}
+
+	public static void genHeartbeatMessage(Exchange exchange) {
+		// TODO Auto-generated method stub
+		long timestamp = System.currentTimeMillis();
+		timestamp = timestamp / 1000;
+		// String textError = "Возникла ошибка при работе адаптера: ";
+		Event genevent = new Event();
+		genevent.setMessage("Сигнал HEARTBEAT от адаптера");
+		genevent.setEventCategory("ADAPTER");
+		genevent.setObject("HEARTBEAT");
+		genevent.setSeverity(PersistentEventSeverity.OK.name());
+		genevent.setTimestamp(timestamp);
+
+		genevent.setEventsource(String.format("%s", endpoint.getConfiguration().getAdaptername()));
+
+		logger.info(" **** Create Exchange for Heartbeat Message container");
+		// Exchange exchange = getEndpoint().createExchange();
+		exchange.getIn().setBody(genevent, Event.class);
+
+		exchange.getIn().setHeader("Timestamp", timestamp);
+		exchange.getIn().setHeader("queueName", "Heartbeats");
+		exchange.getIn().setHeader("Type", "Heartbeats");
+		exchange.getIn().setHeader("Source", String.format("%s", endpoint.getConfiguration().getAdaptername()));
+
+		try {
+			// Processor processor = getProcessor();
+			// .process(exchange);
+			// processor.process(exchange);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+	}
+
+	public static String setRightSeverity(String string) {
+		String newseverity = "";
+
+		switch (string) {
+			case "0":
+				newseverity = PersistentEventSeverity.INFO.name();
+				break;
+			case "1":
+				newseverity = PersistentEventSeverity.CRITICAL.name();
+				break;
+			case "2":
+				newseverity = PersistentEventSeverity.MAJOR.name();
+				break;
+			case "3":
+				newseverity = PersistentEventSeverity.MINOR.name();
+				break;
+			case "4":
+				newseverity = PersistentEventSeverity.WARNING.name();
+				break;
+			case "5":
+				newseverity = PersistentEventSeverity.OK.name();
+				break;
+			default:
+				newseverity = PersistentEventSeverity.INFO.name();
+				break;
+
+		}
+		/*
+		 * System.out.println("***************** colour: " + colour);
+		 * System.out.println("***************** newseverity: " + newseverity);
+		 */
+		return newseverity;
 	}
 
 	@Override
@@ -167,39 +215,6 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 			e.printStackTrace();
 		}
 
-	}
-
-	public static void genHeartbeatMessage(Exchange exchange) {
-		// TODO Auto-generated method stub
-		long timestamp = System.currentTimeMillis();
-		timestamp = timestamp / 1000;
-		// String textError = "Возникла ошибка при работе адаптера: ";
-		Event genevent = new Event();
-		genevent.setMessage("Сигнал HEARTBEAT от адаптера");
-		genevent.setEventCategory("ADAPTER");
-		genevent.setObject("HEARTBEAT");
-		genevent.setSeverity(PersistentEventSeverity.OK.name());
-		genevent.setTimestamp(timestamp);
-
-		genevent.setEventsource(String.format("%s", endpoint.getConfiguration().getAdaptername()));
-
-		logger.info(" **** Create Exchange for Heartbeat Message container");
-		// Exchange exchange = getEndpoint().createExchange();
-		exchange.getIn().setBody(genevent, Event.class);
-
-		exchange.getIn().setHeader("Timestamp", timestamp);
-		exchange.getIn().setHeader("queueName", "Heartbeats");
-		exchange.getIn().setHeader("Type", "Heartbeats");
-		exchange.getIn().setHeader("Source", String.format("%s", endpoint.getConfiguration().getAdaptername()));
-
-		try {
-			// Processor processor = getProcessor();
-			// .process(exchange);
-			// processor.process(exchange);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		}
 	}
 
 	// "throws Exception"
@@ -613,7 +628,7 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 		// vmStatuses.get("ping_colour").toString())
 		event.setObject(alarm.get("object").toString());
 		event.setExternalid(alarm.get("id").toString());
-		event.setCi(String.format("%s", alarm.get("ciid").toString()));
+		event.setCi(String.format("%s:%s", endpoint.getConfiguration().getSource(), alarm.get("ciid").toString()));
 		event.setTimestamp(eventtimestamp);
 		event.setEventCategory(alarm.get("eventtype").toString());
 		event.setEventsource(source);
@@ -640,38 +655,16 @@ public class AlcatelConsumer extends ScheduledPollConsumer {
 		return event;
 	}
 
-	public static String setRightSeverity(String string) {
-		String newseverity = "";
+	public enum PersistentEventSeverity {
+		OK, INFO, WARNING, MINOR, MAJOR, CRITICAL;
 
-		switch (string) {
-		case "0":
-			newseverity = PersistentEventSeverity.INFO.name();
-			break;
-		case "1":
-			newseverity = PersistentEventSeverity.CRITICAL.name();
-			break;
-		case "2":
-			newseverity = PersistentEventSeverity.MAJOR.name();
-			break;
-		case "3":
-			newseverity = PersistentEventSeverity.MINOR.name();
-			break;
-		case "4":
-			newseverity = PersistentEventSeverity.WARNING.name();
-			break;
-		case "5":
-			newseverity = PersistentEventSeverity.OK.name();
-			break;
-		default:
-			newseverity = PersistentEventSeverity.INFO.name();
-			break;
-
+		public static PersistentEventSeverity fromValue(String v) {
+			return valueOf(v);
 		}
-		/*
-		 * System.out.println("***************** colour: " + colour);
-		 * System.out.println("***************** newseverity: " + newseverity);
-		 */
-		return newseverity;
+
+		public String value() {
+			return name();
+		}
 	}
 
 }
